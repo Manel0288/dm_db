@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "name": "index",
+            "label": "Accueil"
+        },
+        {
+            "name": "commandes",
+            "label": "Commandes"
+        },
+        {
+            "name": "entrees",
+            "label": "Entrées"
+        },
+        {
+            "name": "plats",
+            "label": "Plats"
+        },
+        {
+            "name": "dessert",
+            "label": "Desserts"
+        }
+    ]
+}

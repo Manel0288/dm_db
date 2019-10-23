@@ -1,0 +1,221 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dm de bd non traditionnel</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+     </head>
+    <body>
+        <header>
+          <nav class="navbar entet">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Repas Scolaires</a>
+              </div>
+              <ul id="menu" class="nav navbar-nav"></ul>
+            </div>
+          </nav>
+        </header>
+        <section id="content" class="container">
+          <div class="main-content">
+            <div class="side-menu">
+              <!-- sideBar le sous menus gauche -->
+              <div class="sidebar">
+                <nav class="sidebar-nav">
+                  <ul id="a-menu" class="nav">
+                    <li class="nav-title">informations supplementaires</li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="row invisible" >
+              <h2>Histogramme des repas consommés par date </h2>
+              <div id="d3-content"></div>
+            </div>
+          </div>
+          <div id="nconf"></div>
+        </section>
+        <footer></footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://d3js.org/d3.v5.js"></script>
+        <script>
+            //-----------------------------------------
+            function insertDateInfo(root) {
+              //let data = root.filter( el => el._id !== null );
+
+              let w = 800, h = 600;
+              let margin = { top: 20, right: 10, bottom: 100, left: 40 },
+                  width = w - margin.right - margin.left,
+                  height = h - margin.top - margin.bottom;
+
+              console.log("date_info", root);
+              d3.select('.invisible').classed('invisible', false);
+
+              let svg = d3.select("#d3-content").append("svg")
+                  .attr("width", w)
+                  .attr("height", h)
+                  .append("g")
+                      .attr("transform", "translate("+ margin.left +","+ margin.right +")");
+
+              //let desserts = insert.data(root).enter();
+              // binder les données
+              root.sort(function(a,b){
+                return b.count - a.count;
+              })
+
+              //definir les axes
+              let xScale = d3.scaleBand()
+                  .rangeRound([0, width])
+                  .padding(0.2, 0.2);
+
+              let yScale = d3.scaleLinear()
+                  .range([height, 0]);
+
+              let xAxis = d3.axisBottom()
+                  .scale(xScale)
+                  // .orient("bottom");
+
+              let yAxis = d3.axisLeft()
+                  .scale(yScale);
+                  // .orient("left");
+
+
+
+              // donner les labels aux axes x et y
+
+              xScale.domain(root.map(function(d){ return d._id.year; }));
+              yScale.domain([0, d3.max(root, function(d){ return d.count; })]);
+
+              // creer les bars
+              svg.selectAll('rect')
+                  .data(root).enter()
+                  .append('rect')
+                  .attr('height', 0)
+                  .attr('y', height)
+                  .transition().duration(3000)
+                  .delay(function(d,i){ return i*200; })
+                  .attr('x', function(d){ return xScale(d._id.year); })
+                  .attr('y', function(d){ return yScale(d.count); })
+                  .attr('width', xScale.bandwidth())
+                  .attr('height', function(d){ return height - yScale(d.count); })
+                  .style("fill", function(d,i){ return 'rgb(70, 20,' + (i*30) +100 +')'});
+
+                // donner un label à chaque bar
+                svg.selectAll("text")
+                  .data(root).enter()
+                  .append("text")
+                  .text(function(d){ return d.count; })
+                  .attr('x', function(d){ return xScale(d._id.year) + xScale.bandwidth()/2; })
+                  .attr('y', function(d){ return yScale(d.count) + 12; })
+                  .style("fill", "white")
+                  .style("text-anchor", "midlle")
+
+              // Ajouter les axes
+              svg.append("g")
+                  .attr('class', 'x axis')
+                 .attr("transform", "translate(0,"+ height +")")
+                 .call(xAxis);
+
+             svg.append("g")
+                 .attr('class', 'y axis')
+                 .call(yAxis);
+
+
+              // desserts.append("div")
+              //   .attr("class", "box")
+              //   .append("div")
+              //   .attr("class", "dessert-name")
+              //   .attr("id", function(d) {return "dessertId-" + d._id.substr(0, 3);})
+              //   .on('mouseover.tooltip', function(d) {
+              //     console.log(d);
+              //     d3.select("#dessertId-" + d._id.substr(0, 3) + " text")
+              //     .remove();
+              //
+              //     d3.select('#dessertId-' + d._id.substr(0, 3))
+              //       .append('text')
+              //       .attr('class', 'name-rollover')
+              //       .text('  --> ' + d.count + "conf.")
+              //       .transition()
+              //       .style('opacity', 0)
+              //       .duration(500)
+              //       .style('opacity', '100%');
+              //   })
+              //   .on('mouseout.tooltip', function(d) {
+              //     d3.select("#dessertId-" + d._id.substr(0, 3) + " text")
+              //     .transition()
+              //     .duration(500)
+              //     .style('opacity', 0)
+              //     .remove();
+              //   }).text(function(d) { return d._id });
+              //
+              //   d3.selectAll('.box')
+              //   .append('div')
+              //   .style("width", function(d) { return d.count + "em"; })
+              //   .attr("class", "dessert-nb")
+                // .on('mouseover.tooltip', function(d) {
+                //   d3.selectAll("text.name-rollover")
+                //   .remove();
+                //   d3.selectAll('footer')
+                //     .append('text')
+                //     .attr('class', 'name-rollover')
+                //     .text(d.count + " conf.");
+                // })
+                // .on('mouseout.tooltip', function(d) {
+                //   d3.select("text.name-rollover")
+                //   .transition()
+                //   .duration(500)
+                //   .style('opacity', 0)
+                //   .remove();
+                // })
+                //.text(function(d) {return d.count;});
+            }
+
+            //------------------Create the menu-----------------------
+            function insertMenu(root) {
+              let insert = d3.selectAll("#menu").selectAll("ul");
+              let menu = insert.data(root).enter();
+              menu.append("li").attr("class", "menu")
+                .append("a").attr("href", function(d) {return d.name + ".html";})
+                .text(function(d) {return d.label});
+            }
+
+            //------------------Create the aside menu-----------------------
+            function insertAsideMenu(root) {
+              let insert = d3.selectAll("#a-menu").selectAll("ul");
+              let asideMenu = insert.data(root).enter();
+              asideMenu.append("li").attr("class", "nav-item")
+                .append("a").attr("href", function(d) {return d.name + ".html";})
+                .attr("class", "nav-link")
+                .html(function(d) {
+                  return '<i class="nav-icon cui-speedometer"></i>' + d.label
+                });
+            }
+            // adresse regulierement ecoutee
+            var socket = io.connect('http://127.0.0.1:3000');
+
+            socket.on('menu', function(data) {
+              insertMenu(data);
+              socket.emit('ack');
+            });
+
+            socket.on('aside_menu', function(data) {
+              insertAsideMenu(data);
+              socket.emit('ack');
+            });
+
+            socket.on('date_info', function(data) {
+              console.log(data);
+              insertDateInfo(data);
+              socket.emit('ack');
+            });
+
+            socket.emit('menu');
+            socket.emit('aside_menu');
+            socket.emit('date_info');
+        </script>
+    </body>
+</html>

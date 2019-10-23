@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dm de bd non traditionnel</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar entet">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Repas Scolaires</a>
+          </div>
+          <ul id="menu" class="nav navbar-nav"></ul>
+        </div>
+      </nav>
+    </header>
+    <section id="content" class="container">
+      <div class="main-content">
+        <div class="side-menu">
+          <!-- sideBar le sous menus gauche -->
+          <div class="sidebar">
+            <nav class="sidebar-nav">
+              <ul id="a-menu" class="nav">
+                <li class="nav-title">informations supplementaires</li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div id="d3-content" class="invisible">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Jour</th>
+                <th scope="col">Service</th>
+                <th scope="col">Entrée</th>
+                <th scope="col">Plat principal</th>
+                <th scope="col">Dessert</th>
+              </tr>
+            </thead>
+            <tbody id="table-content">
+            </tbody>
+          </table>
+          <div id="pagination-content" class="invisible">
+            <nav aria-label="Page navigation example">
+              <ul id="paginate" class="pagination">
+                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+      function insertCommandes(root) {
+        let insert = d3.selectAll("#d3-content table tbody").selectAll("tbody");
+        let recepies = insert.data(root.docs).enter();
+
+        let trs = recepies.append("tr");
+
+        d3.selectAll('.invisible').classed('invisible', false);
+
+        trs.each(function(d){
+          const f = d.fields;
+          d3.select(this)
+          .html(function(d){
+            let tags = "";
+            if (f.service != "Férié" || f.service != "Pas de service") {
+              tags += "<td>"+ f.date +"</td>";
+              tags += "<td>"+ f.jour +"</td>";
+              tags += "<td>"+ f.service +"</td>";
+              tags += "<td>"+ f.entree +"</td>";
+              tags += "<td>"+ f.plat_principal +"</td>";
+              tags += "<td>"+ f.dessert +"</td>";
+            }else {
+              tag += "<td>"+ f.date +"</td>";
+              tags += "<td>"+ f.jour +"</td>";
+              tags += "<td>"+ f.service +"</td>";
+              tag += "<td></td>";
+              tags += "<td></td>";
+              tags += "<td></td>";
+            }
+            return tags;
+          });
+        });
+      }
+
+        //------------------Create the menu-----------------------
+        function insertMenu(root) {
+          let insert = d3.selectAll("#menu").selectAll("ul");
+          let menu = insert.data(root).enter();
+          menu.append("li").attr("class", "menu")
+            .append("a").attr("href", function(d) {return d.name + ".html";})
+            .text(function(d) {return d.label});
+        }
+
+        //------------------Create the aside menu-----------------------
+        function insertAsideMenu(root) {
+          let insert = d3.selectAll("#a-menu").selectAll("ul");
+          let asideMenu = insert.data(root).enter();
+          asideMenu.append("li").attr("class", "nav-item")
+            .append("a").attr("href", function(d) {return d.name + ".html";})
+            .attr("class", "nav-link")
+            .html(function(d) {
+              return '<i class="nav-icon cui-speedometer"></i>' + d.label
+            });
+        }
+        //----------------------- Building Pagination System-----------------
+        function makePagination(root){
+          let paginate = document.getElementById("paginate");
+
+          for (let i = 0; i < root.total; i++) {
+            console.log("i:",i);
+            let li = document.createElement("li");
+            li.classList.add("page-item");
+
+            let a = document.createElement("a");
+            a.classList.add("page-link");
+            let page = i+1;
+            if (page == root.page) {
+              li.classList.add("active")
+            }
+            a.href = "http://127.0.0.1:3000/commandes.html?page="+page;
+            a.textContent = page;
+            li.appendChild(a);
+            paginate.appendChild(li);
+          }
+        }
+
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let page = url.searchParams.get("page");
+
+        // adresse regulierement ecoutee
+
+        var socket = io.connect('http://127.0.0.1:3000/');
+
+        socket.on('menu', function(data) {
+          insertMenu(data);
+          socket.emit('ack');
+        });
+
+        socket.on('aside_menu', function(data) {
+          insertAsideMenu(data);
+          socket.emit('ack');
+        });
+
+        socket.on('commandes', function(data) {
+          console.log(data);
+          insertCommandes(data);
+          makePagination(data);
+          socket.emit('ack');
+        });
+
+        socket.emit('menu');
+        socket.emit('aside_menu');
+        socket.emit('commandes', {page: page});
+
+    </script>
+  </body>
+</html>

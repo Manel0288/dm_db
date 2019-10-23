@@ -1,0 +1,595 @@
+
+{
+
+    "nhits":1063,
+    "parameters":{
+        "dataset":[
+            "menus-de-la-cuisine-centrale-2016"
+        ]
+        ,
+        "timezone":"UTC",
+        "rows":10,
+        "format":"json",
+        "facet":[
+            "date",
+            "jour",
+            "service",
+            "entree_info",
+            "plat_info",
+            "garniture_info",
+            "laitier_info",
+            "dessert_info"
+        ]
+    }
+    ,
+    "records":[
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"912094d6c2be51eef334950b8d6796335dbc7d7e",
+            "fields":{
+                "entree":"Pâté de campagne",
+                "pain":"Bio",
+                "dessert_info":"Local",
+                "service":"Scolaires",
+                "dessert":"Fraises",
+                "plat_principal":"Galopin de veau au jus",
+                "garniture_info":"Bio (pommes de terre)/Local (lait entier)",
+                "produit_laitier_ou_divers":"Petit Suisse",
+                "garniture":"Purée d'épinards",
+                "date":"2015-05-07",
+                "jour":"Jeudi",
+                "entree_substitut":"Pâté de volaille",
+                "entree_info":"Présence de porc"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"44653eddd434e4d0d492e064cbf785574b46cc4c",
+            "fields":{
+                "entree":"Bouillon aux vermicelles",
+                "jour":"Lundi",
+                "dessert_info":"Local",
+                "service":"Scolaires",
+                "dessert":"Galettes Saint Michel",
+                "plat_principal":"Raviolis de volaille",
+                "produit_laitier_ou_divers":"Compote allégée de pomme",
+                "date":"2015-05-11",
+                "pain":"Bio"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"ecc79d98b2b8ed112ade346e291be5dec8196182",
+            "fields":{
+                "entree":"Tomates vinaigrette",
+                "jour":"Mardi",
+                "laitier_info":"Local/Bio",
+                "service":"Scolaires",
+                "dessert":"Kiwi",
+                "plat_principal":"Aiguillettes de poulet sauce barbecue",
+                "produit_laitier_ou_divers":"Yaourt nature sucré",
+                "garniture":"Frites",
+                "date":"2015-05-12",
+                "pain":"Bio"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"d43b16cd49506363b3fa79047f037eeee326b365",
+            "fields":{
+                "entree":"Saucisson à l'ail",
+                "jour":"Mardi",
+                "service":"Scolaires",
+                "dessert":"Lacté vanille",
+                "plat_principal":"Poisson pané",
+                "produit_laitier_ou_divers":"Camembert",
+                "garniture":"Carottes en bâtonnet",
+                "date":"2015-05-19",
+                "pain":"Bio",
+                "entree_substitut":"Pâté de volaille",
+                "entree_info":"Présence de porc"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"a768b9bf73cd906ca26dfa6181b77910e52b6f94",
+            "fields":{
+                "entree":"Salade de tortis 3 couleurs",
+                "jour":"Mardi",
+                "laitier_info":"Local/Bio",
+                "service":"Scolaires",
+                "dessert":"Pomme",
+                "plat_principal":"Aiguillettes de poulet au jus",
+                "produit_laitier_ou_divers":"Yaourt Malo à la vanille",
+                "garniture":"Petits pois à l'étuvée",
+                "date":"2015-05-26",
+                "pain":"Bio",
+                "dessert_info":"Local"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"92d942bdf30f8d639552a617fe657547a87d907c",
+            "fields":{
+                "entree":"Pépinettes au curry",
+                "jour":"Mercredi",
+                "service":"Centres de loisirs",
+                "dessert":"Pêche",
+                "plat_principal":"Poisson pané et citron",
+                "produit_laitier_ou_divers":"Vache Picon",
+                "garniture":"Petits pois à l'étuvée",
+                "date":"2015-06-10",
+                "pain":"Bio"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"e312b5ca9e14d6c78b21230bdcc3e7cedd1a5eb5",
+            "fields":{
+                "entree":"Taboulé",
+                "jour":"Lundi",
+                "service":"Scolaires",
+                "dessert":"Flan nappé caramel",
+                "plat_principal":"Cordon bleu de volaille",
+                "produit_laitier_ou_divers":"Bûche mi-chèvre",
+                "garniture":"Carottes en bâtonnet",
+                "date":"2015-06-15",
+                "pain":"Bio",
+                "entree_info":"Bio (semoule)"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"5b578fa1360335a502690c1690c4545f6710d1b7",
+            "fields":{
+                "entree":"Salade Iceberg",
+                "jour":"Jeudi",
+                "service":"Scolaires",
+                "dessert":"Pêche",
+                "plat_principal":"Cheeseburger",
+                "plat_info":"Bœuf VF",
+                "garniture":"Frites",
+                "date":"2015-06-25",
+                "pain":"Bio"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"991b5eaaf83feabb041e0c14f0a3f6502db066a8",
+            "fields":{
+                "entree":"Tomates au basilic",
+                "jour":"Jeudi",
+                "dessert_info":"Local (lait entier)/Dessert du Chef",
+                "service":"Scolaires",
+                "dessert":"Entremets vanille",
+                "plat_principal":"Couscous (boulettes de mouton-merguez)",
+                "garniture_info":"Bio",
+                "produit_laitier_ou_divers":"Tomme noire",
+                "garniture":"Semoule",
+                "date":"2015-07-02",
+                "pain":"Bio"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+        ,
+        {
+            "datasetid":"menus-de-la-cuisine-centrale-2016",
+            "recordid":"1b67b1efbb903f01a1835e12f2b07c95442c820b",
+            "fields":{
+                "entree":"Sandwich jambon-fromage",
+                "jour":"Vendredi",
+                "service":"Scolaires",
+                "dessert":"Biscuit",
+                "plat_principal":"Chips",
+                "produit_laitier_ou_divers":"Nectarine",
+                "garniture":"Compote",
+                "date":"2015-07-03",
+                "pain":"Pain complet",
+                "entree_substitut":"Sandwich au thon",
+                "entree_info":"Présence de porc"
+            }
+            ,
+            "record_timestamp":"2016-09-28T15:00:25+00:00"
+        }
+    ]
+    ,
+    "facet_groups":[
+        {
+            "name":"date",
+            "facets":[
+                {
+                    "name":"2015",
+                    "path":"2015",
+                    "count":174,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"2016",
+                    "path":"2016",
+                    "count":260,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"2017",
+                    "path":"2017",
+                    "count":278,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"2018",
+                    "path":"2018",
+                    "count":262,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"2019",
+                    "path":"2019",
+                    "count":89,
+                    "state":"displayed"
+                }
+            ]
+        }
+        ,
+        {
+            "name":"jour",
+            "facets":[
+                {
+                    "name":"Jeudi",
+                    "path":"Jeudi",
+                    "count":213,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Mardi",
+                    "path":"Mardi",
+                    "count":213,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Mercredi",
+                    "path":"Mercredi",
+                    "count":213,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Lundi",
+                    "path":"Lundi",
+                    "count":212,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Vendredi",
+                    "path":"Vendredi",
+                    "count":212,
+                    "state":"displayed"
+                }
+            ]
+        }
+        ,
+        {
+            "name":"service",
+            "facets":[
+                {
+                    "name":"Scolaires",
+                    "path":"Scolaires",
+                    "count":459,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Centres de loisirs",
+                    "path":"Centres de loisirs",
+                    "count":457,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Scolaire",
+                    "path":"Scolaire",
+                    "count":114,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Férié",
+                    "path":"Férié",
+                    "count":27,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Centre de loisirs",
+                    "path":"Centre de loisirs",
+                    "count":5,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Pas de service",
+                    "path":"Pas de service",
+                    "count":1,
+                    "state":"displayed"
+                }
+            ]
+        }
+        ,
+        {
+            "name":"entree_info",
+            "facets":[
+            (too many elements to preview)]
+        }
+        ,
+        {
+            "name":"plat_info",
+            "facets":[
+            (too many elements to preview)]
+        }
+        ,
+        {
+            "name":"garniture_info",
+            "facets":[
+            (too many elements to preview)]
+        }
+        ,
+        {
+            "name":"laitier_info",
+            "facets":[
+                {
+                    "name":"Local",
+                    "path":"Local",
+                    "count":119,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Bio",
+                    "path":"Bio",
+                    "count":117,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Elaboré par le Chef et son équipe",
+                    "path":"Elaboré par le Chef et son équipe",
+                    "count":25,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Nouveauté",
+                    "path":"Nouveauté",
+                    "count":23,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (lait entier)",
+                    "path":"Local (lait entier)",
+                    "count":21,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"AOP",
+                    "path":"AOP",
+                    "count":17,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Elaboré par le chef et son équipe",
+                    "path":"Elaboré par le chef et son équipe",
+                    "count":6,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"AOC",
+                    "path":"AOC",
+                    "count":3,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"AOP-AOC",
+                    "path":"AOP-AOC",
+                    "count":2,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"AOP - AOC",
+                    "path":"AOP - AOC",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Dessert du Chef",
+                    "path":"Dessert du Chef",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Elaboré part le Chef et son équipe",
+                    "path":"Elaboré part le Chef et son équipe",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (Lait entier)",
+                    "path":"Local (Lait entier)",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (Lait)",
+                    "path":"Local (Lait)",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (pomme)",
+                    "path":"Local (pomme)",
+                    "count":1,
+                    "state":"displayed"
+                }
+            ]
+        }
+        ,
+        {
+            "name":"dessert_info",
+            "facets":[
+                {
+                    "name":"Local",
+                    "path":"Local",
+                    "count":71,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Bio",
+                    "path":"Bio",
+                    "count":67,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Nouveauté",
+                    "path":"Nouveauté",
+                    "count":61,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Elaboré par le Chef et son équipe",
+                    "path":"Elaboré par le Chef et son équipe",
+                    "count":45,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Elaboré par le chef et son équipe",
+                    "path":"Elaboré par le chef et son équipe",
+                    "count":13,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Origine France",
+                    "path":"Origine France",
+                    "count":8,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Dessert du Chef",
+                    "path":"Dessert du Chef",
+                    "count":7,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (lait entier)",
+                    "path":"Local (lait entier)",
+                    "count":6,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Origine DOM-TOM",
+                    "path":"Origine DOM-TOM",
+                    "count":6,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (crêpe)",
+                    "path":"Local (crêpe)",
+                    "count":2,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (petit beurre)",
+                    "path":"Local (petit beurre)",
+                    "count":2,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Certifié Global Gap",
+                    "path":"Certifié Global Gap",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (Lait entier)",
+                    "path":"Local (Lait entier)",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (Pommes)",
+                    "path":"Local (Pommes)",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (fraises)",
+                    "path":"Local (fraises)",
+                    "count":1,
+                    "state":"displayed"
+                }
+                ,
+                {
+                    "name":"Local (pomme)",
+                    "path":"Local (pomme)",
+                    "count":1,
+                    "state":"displayed"
+                }
+            ]
+        }
+    ]
+
+}

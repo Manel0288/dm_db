@@ -1,0 +1,12 @@
+{
+    "items": [
+        {
+            "name": "histo",
+            "label": "Histogramme"
+        },
+        {
+            "name": "nuage",
+            "label": "nuages des Plats"
+        }
+    ]
+}

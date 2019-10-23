@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dm de bd non traditionnel</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar entet">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Repas Scolaires</a>
+          </div>
+          <ul id="menu" class="nav navbar-nav"></ul>
+        </div>
+      </nav>
+    </header>
+    <section id="content" class="container">
+      <div class="main-content">
+        <div class="side-menu">
+          <div class="sidebar">
+            <nav class="sidebar-nav">
+              <ul id="a-menu" class="nav">
+                <li class="nav-title">informations supplementaires</li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="row" id="d3-content">
+          <h2 class="row">Site de menus culinaires</h2>
+          <div class="row well">
+            <p>Ce site présente des données ouvertes ("open data") des menus de cuisine centrale de la Communauté
+              d'Agglomération du Pays de Saint-Malo ("Saint-Malo Agglomération") fournies sur
+              <a href="https://data.stmalo-agglomeration.fr/explore/dataset/menus-de-la-cuisine-centrale-2016/api/?disjunctive.
+              entree_info&disjunctive.plat_info&disjunctive.garniture_info&disjunctive.laitier_info&disjunctive.dessert_info">Data.StMalo-Agglomération</a>
+            </p>
+            <p>
+              Il permet de présenter les menus de cuisine, leurs services, leurs constitutions ainsi que les dates aux quelles
+              ils ont été servis en proposant différents types de visualisation des données. Mais aussi de voir le nombre de menus
+              servis par date, le nombre de fois qu’une entrée, un plat principal ou un dessert a été servi. Cela permet par la suite
+              de faire des analyses sur les menus, plats, entrées et desserts les plus consommés mais aussi de voir l’année la plus rentable
+              et les services les plus favorables.    
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="nconf"></div>
+    </section>
+    <footer></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script>
+        //------------------Create the menu-----------------------
+        function insertMenu(root) {
+          let insert = d3.selectAll("#menu").selectAll("ul");
+          let menu = insert.data(root).enter();
+          menu.append("li").attr("class", "menu")
+            .append("a").attr("href", function(d) {return d.name + ".html";})
+            .text(function(d) {return d.label});
+        }
+
+        //------------------Create the aside menu-----------------------
+        function insertAsideMenu(root) {
+          let insert = d3.selectAll("#a-menu").selectAll("ul");
+          let asideMenu = insert.data(root).enter();
+          asideMenu.append("li").attr("class", "nav-item")
+            .append("a").attr("href", function(d) {return d.name + ".html";})
+            .attr("class", "nav-link")
+            .html(function(d) {
+              return '<i class="nav-icon cui-speedometer"></i>' + d.label
+            });
+        }
+
+        // adresse regulierement ecoutee
+        var socket = io.connect('http://127.0.0.1:3000');
+
+        socket.on('menu', function(data) {
+          console.log(data);
+          insertMenu(data);
+          socket.emit('ack');
+        });
+        //
+        socket.on('aside_menu', function(data) {
+          console.log(data);
+          insertAsideMenu(data);
+          socket.emit('ack');
+        });
+
+        socket.emit('menu');
+        socket.emit('aside_menu');
+    </script>
+  </body>
+</html>

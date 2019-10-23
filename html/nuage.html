@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dm de bd non traditionnel</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+     </head>
+    <body>
+        <header>
+          <nav class="navbar entet">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Repas Scolaires</a>
+              </div>
+              <ul id="menu" class="nav navbar-nav"></ul>
+            </div>
+          </nav>
+        </header>
+        <section id="content" class="container">
+          <div class="main-content">
+            <div class="side-menu">
+              <!-- sideBar le sous menus gauche -->
+              <div class="sidebar">
+                <nav class="sidebar-nav">
+                  <ul id="a-menu" class="nav">
+                    <li class="nav-title">informations supplementaires</li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div class="row invisible" >
+              <h2>Nuage des plats Principaux </h2>
+              <div id="d3-content"></div>
+            </div>
+          </div>
+          <div id="nconf"></div>
+        </section>
+        <footer></footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://d3js.org/d3.v5.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+        <script>
+            //-----------------------------------------
+            function insertNuagePlats(root) {
+              let data = root.filter( el => el._id._id !== null && el.count > 3 );
+              console.log("desserts", data);
+
+              const width = document.querySelector(".container").offsetWidth * 0.95,
+                    height = 700,
+                    fontFamily = "Open Sans",
+                    fontScale = d3.scaleLinear().range([20, 120]),
+                    fillScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+              let minSize = d3.min(data, function(d) { return d.count; });
+              let maxSize = d3.max(data, function(d) { return d.count; });
+
+              fontScale.domain([minSize, maxSize]);
+
+              d3.select('.invisible').classed('invisible', false);
+
+              d3.layout.cloud()
+                .size([width, height])
+                .words(data)
+                .padding(1)
+                .rotate(function() {
+                    return ~~(Math.random() * 2) * 45;
+                })
+                .spiral("rectangular")
+                .font(fontFamily)
+                .fontSize(function(d) { return fontScale(d.count); })
+                .on("end", draw)
+                .start();
+
+              function draw() {
+                d3.select("#d3-content").append("svg") // Ajout d'un élément SVG sur un DIV existant de la page
+                  .attr("class", "svg")
+                  .attr("width", width)
+                  .attr("height", height)
+                  .append("g") // Ajout du groupe qui contiendra tout les mots
+                      .attr("transform", "translate(" + width / 2 + ", " + height / 2 + ")") // Centrage du groupe
+                      .selectAll("text")
+                      .data(data)
+                      .enter().append("text") // Ajout de chaque mot avec ses propriétés
+                          .style("font-size", function(d) { return (d.count + 8) + "px"; })
+                          .style("font-family", fontFamily)
+                          .style("fill", function(d, i) { return fillScale(d.count); })
+                          .attr("text-anchor", "middle")
+                          .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; })
+                          .text(function(d) { return d._id._id; });
+
+              }
+            }
+
+            //------------------Create the menu-----------------------
+            function insertMenu(root) {
+              let insert = d3.selectAll("#menu").selectAll("ul");
+              let menu = insert.data(root).enter();
+              menu.append("li").attr("class", "menu")
+                .append("a").attr("href", function(d) {return d.name + ".html";})
+                .text(function(d) {return d.label});
+            }
+
+            //------------------Create the aside menu-----------------------
+            function insertAsideMenu(root) {
+              let insert = d3.selectAll("#a-menu").selectAll("ul");
+              let asideMenu = insert.data(root).enter();
+              asideMenu.append("li").attr("class", "nav-item")
+                .append("a").attr("href", function(d) {return d.name + ".html";})
+                .attr("class", "nav-link")
+                .html(function(d) {
+                  return '<i class="nav-icon cui-speedometer"></i>' + d.label
+                });
+            }
+            // adresse regulierement ecoutee
+            var socket = io.connect('http://127.0.0.1:3000');
+
+            socket.on('menu', function(data) {
+              insertMenu(data);
+              socket.emit('ack');
+            });
+
+            socket.on('aside_menu', function(data) {
+              insertAsideMenu(data);
+              socket.emit('ack');
+            });
+
+            socket.on('plat_info', function(data) {
+              console.log(data);
+              insertNuagePlats(data);
+              socket.emit('ack');
+            });
+
+            socket.emit('menu');
+            socket.emit('aside_menu');
+            socket.emit('plat_info');
+        </script>
+    </body>
+</html>

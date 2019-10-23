@@ -1,0 +1,107 @@
+
+.main-content{
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+}
+
+.side-menu{
+  max-width: 20%;
+  align-self: flex-start;
+  margin-right: 5%;
+}
+
+#d3-content{
+  max-width: 100%;
+  align-self: flex-end;
+}
+
+.entet{
+  background: #FFA07A;
+}
+
+.anim{
+  background: aqua;
+}
+
+/* svg{
+  background-color: antiquewhite;
+} */
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+/* .thead-dark{
+  background: purple;
+  color: white;
+} */
+
+ /* .box {
+    height: 1.1em;
+    display: table;
+    max-width: 100%;
+} */
+/*
+#content {
+    float: none;
+}
+
+.menu {
+    float: left;
+    padding: 1em 2em;
+    text-decoration: none;
+    background: #111;
+}
+
+menu a{
+    background-color: #00933C;
+    color: whitesmoke;
+    padding: 0.2em;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    color: #111;
+    font-family: cursive
+}
+
+a{
+    color: darkolivegreen;
+}
+
+header{
+    position: absolute;
+    top: 1em;
+}
+footer{
+    position: absolute;
+    top: 0em;
+    font-size: small;
+}
+
+section #d3-content{
+    position: absolute;
+    top: 6em;
+    padding: 2em;
+    width: 36em;
+}
+
+*/
+.dessert-name{
+    font-size: small;
+    display: table-cell;
+    /* max-width: 50%; */
+}
+.dessert-nb{
+    text-align: right;
+    float: right;
+    background-color: #00933C;
+    text-align: right;
+    color: whitesmoke;
+    font-size: small;
+}
